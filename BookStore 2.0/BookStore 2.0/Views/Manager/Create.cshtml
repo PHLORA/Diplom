@@ -1,0 +1,155 @@
+﻿@model BookStore_2._0.Entities.Store.Book
+@{
+    ViewBag.Title = "Добавление пользователя";
+}
+<style>
+    body {
+        background-color: white;
+    }
+
+    .con {
+        background-color: white;
+        border: 2px solid #27ae61;
+        border-radius: 6px;
+        margin-top: 25px;
+        padding: 0px 25px 0px 25px;
+        width: 750px;
+    }
+
+    .panel_header {
+        text-align: center;
+        font-size: 20px;
+        font-weight: 700;
+        margin-bottom: 20px;
+        padding-top: 20px;
+    }
+
+    p {
+        display: flex;
+        font-weight: 500;
+        color: #27ae61;
+        font-size: 17px;
+    }
+
+    .editor {
+        margin-left: 100px;
+        font-size: 17px;
+        padding: 4px;
+        width: 200px;
+        border: 1px solid #c4c4c4;
+        border-radius: 0;
+        outline: none;
+        position: absolute;
+    }
+
+        .editor:hover {
+            border: 1px solid #27ae61;
+        }
+
+    .textarea {
+        margin-left: 20px;
+        padding: 4px;
+        font-size: 17px;
+        width: 500px;
+        height: 100px;
+        resize: none;
+        outline: none;
+        border: 1px solid #c4c4c4;
+    }
+
+        .textarea:hover {
+            border: 1px solid #27ae61;
+        }
+
+    .custom-file-label {
+        border-radius: 0;
+    }
+
+        .custom-file-label::after {
+            content: "Просмотр";
+            background-color: #30df7b;
+            border-radius: 0;
+        }
+
+    .custom-file-input {
+        cursor: pointer;
+    }
+
+        .custom-file-input:focus ~ .custom-file-label {
+            border-color: #c4c4c4;
+            box-shadow: none;
+        }
+
+    .btn_save {
+        background-color: #f68038;
+        color: white;
+    }
+
+        .btn_save:hover {
+            background-color: #d05700;
+        }
+
+    .btn_back {
+        color: #666666;
+        background-color: #e6e6e6;
+    }
+
+        .btn_back:hover {
+            background-color: #a1a1a1;
+        }
+
+    .panel_footer {
+        display: flex;
+        justify-content: space-between;
+    }
+</style>
+<form asp-action="create" asp-controller="manager" method="post">
+    <div class="container con">
+        <div class="panel_header">Добавление книги</div>
+        <div class="con_text">
+
+            <p>Название @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "editor", @style = "width: 500px" } })</p>
+            <span asp-validation-for="Book.Name" class="text-danger"></span>
+
+            <p>Описание @Html.TextAreaFor(model => model.Description, new { @class = "textarea" }) </p>
+            @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+            
+            <p>Цена @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "editor", @style = "width: 70px", @type = "text" } })</p>
+                        @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+            
+            <p>Цена @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "editor", @style = "width: 70px", @type = "text" } })</p>
+                        @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+
+            <p>Цена @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "editor", @style = "width: 70px", @type = "text" } })</p>
+            @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+
+            <p>Язык @Html.EditorFor(model => model.Language, new { htmlAttributes = new { @class = "editor" } })</p>
+            @Html.ValidationMessageFor(model => model.Language, "", new { @class = "text-danger" })
+
+            <p>Переплет @Html.EditorFor(model => model.Cover, new { htmlAttributes = new { @class = "editor" } })</p>
+            @Html.ValidationMessageFor(model => model.Cover, "", new { @class = "text-danger" })
+            <span asp-validation-for="Book.Cover" class="text-danger"></span>
+
+            <p>Кол-во страниц: @Html.EditorFor(model => model.Pages, new { htmlAttributes = new { @class = "editor" } })</p>
+            @Html.ValidationMessageFor(model => model.Pages, "", new { @class = "text-danger" })
+
+            <p>Дата публикации: @Html.EditorFor(model => model.PublicationDate, new { htmlAttributes = new { @class = "editor" } })</p>
+            @Html.ValidationMessageFor(model => model.PublicationDate, "", new { @class = "text-danger" })
+
+            <p>Издатель @Html.EditorFor(model => model.Publisher, new { htmlAttributes = new { @class = "editor" } })</p>
+            @Html.ValidationMessageFor(model => model.Publisher, "", new { @class = "text-danger" })
+
+
+            <div class="custom-file" style="width: 250px; margin-left: 100px;">
+                <p style="margin-left: -100px;">
+                    Обложка <input type="file" name="upload" class="custom-file-input" />
+                    <label class="custom-file-label" for="customFile">Выберите файл</label>
+            </div>
+
+            <div class="panel_footer" style="margin:20px 0px 20px 0px">
+                <input type="submit" value="Сохранить" class="btn btn_save" />
+                @Html.ActionLink("Отмена", "Index", null, new { @class = "btn btn_back" })
+            </div>
+        </div>
+        </div>
+</form>
